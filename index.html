@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amenazas en Ciberseguridad</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fb;
+      color: #222;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    table {
+      width: 95%;
+      border-collapse: collapse;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    thead {
+      background: #3a6ea5;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    tr:nth-child(even) {
+      background: #eef6fc;
+    }
+
+    tr:hover {
+      background: #d4e9fa;
+      transition: 0.3s;
+    }
+
+    img {
+      width: 50px;  /* imágenes pequeñas */
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Principales Amenazas Digitales</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Amenaza</th>
+          <th>Explicación</th>
+          <th>Consecuencias</th>
+          <th>Ejemplo</th>
+          <th>Imagen</th>
+        </tr>
+      </thead>
+      <tbody id="tablaAmenazas"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const amenazas = [
+      {
+        "ataque":"Suplantación (Phishing)",
+        "descripcion": "Fraude digital que busca obtener datos sensibles mediante mensajes o correos engañosos.",
+        "impacto":"Acceso indebido a cuentas, pérdida de información personal.",
+        "ejemplo":"Un correo que aparenta ser de un banco pidiendo usuario y contraseña.",
+        "imagen":"https://tse4.mm.bing.net/th/id/OIP.N-ksTyVihck6oZCYxCLSmwHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+      },
+      {
+        "ataque": "Software malicioso (Malware)",
+        "descripcion": "Programa diseñado para alterar, dañar o infiltrarse en un sistema sin autorización.",
+        "impacto": "Fallos en el sistema, robo de información o pérdida de control.",
+        "ejemplo": "Un archivo adjunto que instala un virus al abrirlo.",
+        "imagen": "https://previews.123rf.com/images/vanilladesign/vanilladesign1312/vanilladesign131200026/24190712-computer-virus-attacking-laptop.jpg"
+      },
+      {
+        "ataque": "Secuestro digital (Ransomware)",
+        "descripcion": "Cifra los archivos y exige un pago a cambio de su liberación.",
+        "impacto": "Bloqueo de información importante y pérdidas económicas.",
+        "ejemplo": "El ataque WannaCry de 2017 que afectó a hospitales y empresas.",
+        "imagen": "https://web-assets.esetstatic.com/wls/2017/08/falso-ransomware-rescate.png"
+      },
+      {
+        "ataque": "Saturación de servicio (DoS)",
+        "descripcion": "Sobrecarga de solicitudes para dejar fuera de servicio una página o aplicación.",
+        "impacto": "Interrupción temporal de plataformas o servicios en línea.",
+        "ejemplo": "Un banco queda inaccesible tras recibir millones de peticiones simultáneas.",
+        "imagen": "https://pandorafms.com/blog/wp-content/uploads/2019/04/servidor-caido-featured.jpg"
+      },
+      {
+        "ataque": "Ataque distribuido (DDoS)",
+        "descripcion": "Versión masiva del DoS lanzada desde múltiples equipos infectados.",
+        "impacto": "Caída de grandes plataformas y servicios web.",
+        "ejemplo": "El ataque a Dyn en 2016 que afectó a Twitter y Netflix.",
+        "imagen": "https://i0.wp.com/hackwise.mx/wp-content/uploads/2020/07/DDOS.jpg?fit=1920%2C1080&ssl=1"
+      },
+      {
+        "ataque": "Inyección SQL",
+        "descripcion": "Inserción de comandos maliciosos en formularios para acceder a bases de datos.",
+        "impacto": "Exposición de contraseñas y datos confidenciales.",
+        "ejemplo": "Robar usuarios y claves manipulando un campo de login.",
+        "imagen": "https://cdn.prod.website-files.com/62e153e41d6ee298cc9a98f7/664526c6b5d33a26f1f2d8d4_jWo5Fuu5H-vfDBIotqjNn69eLqOiL9ErXz6y2QQLhscryytBnAR1hSAflUOepZMvPSmHq9zCPUm0vMF5f1uK_Rc-5x2iSAKogeoE50iw5uhZeJQhegeEcaW-XKaQfTJ1OLX9nVsAbilo7y5MGCJ7Vo4.png"
+      },
+      {
+        "ataque": "Fuerza bruta",
+        "descripcion": "Prueba repetitiva de contraseñas hasta encontrar la correcta.",
+        "impacto": "Acceso no autorizado a cuentas y sistemas.",
+        "ejemplo": "Un programa prueba miles de combinaciones para entrar en un correo.",
+        "imagen": "https://learn-attachment.microsoft.com/api/attachments/104d95c1-07b4-4a81-89a1-36e87d0720a5?platform=QnA"
+      },
+      {
+        "ataque": "Intercepción (Man-in-the-Middle)",
+        "descripcion": "El atacante se coloca entre dos dispositivos para espiar o modificar la comunicación.",
+        "impacto": "Robo de información transmitida en redes inseguras.",
+        "ejemplo": "Capturar contraseñas usando Wi-Fi público.",
+        "imagen": "https://urbantecno.com/hero/2022/07/En-este-post-te-contaremos-como-puedes-conectar-dos-ordenadores-por-medio-de-un-cable-USB.jpg?width=1200&aspect_ratio=16:9"
+      },
+      {
+        "ataque": "Vulnerabilidades de día cero",
+        "descripcion": "Aprovechan errores desconocidos en el software antes de que sean corregidos.",
+        "impacto": "Control total del sistema sin advertencia previa.",
+        "ejemplo": "Explotar un fallo de Windows antes de que Microsoft publique el parche.",
+        "imagen": "https://www.diarioelectronicohoy.com/blog/imagenes/2015/05/dosdigitos4029.jpg"
+      },
+      {
+        "ataque": "Registradores de teclas (Keylogging)",
+        "descripcion": "Programas o dispositivos que registran todo lo que se escribe en el teclado.",
+        "impacto": "Robo de contraseñas e información privada.",
+        "ejemplo": "Capturar claves al iniciar sesión en un navegador.",
+        "imagen": "https://media.istockphoto.com/id/497540650/es/foto/soluci%C3%B3n-escrito-del-teclado-con-lupa.jpg?s=1024x1024&w=is&k=20&c=SeP42nKFlZ31RKB-N5Urzv7wijRoVqGDuB_rgysUm58="
+      },
+      {
+        "ataque": "XSS (Cross-Site Scripting)",
+        "descripcion": "Inserción de código malicioso en páginas web para ejecutarse en el navegador de la víctima.",
+        "impacto": "Robo de cookies y manipulación de sesiones.",
+        "ejemplo": "Un foro vulnerable permite robar sesiones con JavaScript inyectado.",
+        "imagen": "https://blogs.uninter.edu.mx/ESCAT/wp-content/uploads/2021/01/image.jpeg"
+      },
+      {
+        "ataque": "Ingeniería social",
+        "descripcion": "Tácticas de manipulación psicológica para obtener información o acceso.",
+        "impacto": "Usuarios engañados entregan datos sensibles.",
+        "ejemplo": "Alguien se hace pasar por técnico para entrar a un servidor.",
+        "imagen": "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/D658/production/_100627845_primera.jpg.webp"
+      }
+    ];
+
+    const cuerpo = document.querySelector("#tablaAmenazas");
+    amenazas.forEach(item => {
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${item.ataque}</td>
+        <td>${item.descripcion}</td>
+        <td>${item.impacto}</td>
+        <td>${item.ejemplo}</td>
+        <td><img src="${item.imagen}" alt="${item.ataque}"></td>
+      `;
+      cuerpo.appendChild(fila);
+    });
+  </script>
+</body>
+</html>
